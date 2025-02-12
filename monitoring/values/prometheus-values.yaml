@@ -1,0 +1,6 @@
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelector: {}
+    logLevel: debug
+grafana:
+  enabled: false
