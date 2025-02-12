@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-stack
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1" 
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  project: default
+  source:
+    repoURL: https://github.com/PierreStephaneVoltaire/Kubernetes-playground-observability.git
+    targetRevision: master
+    path: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true 
