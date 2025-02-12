@@ -25,3 +25,26 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true 
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  description: Project for monitoring stack deployments
+  sourceRepos:
+    - "*"
+  destinations:
+    - namespace: "*"
+      server: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
