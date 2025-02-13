@@ -15,3 +15,7 @@ spec:
     helm:
       valueFiles:
         - https://raw.githubusercontent.com/PierreStephaneVoltaire/Kubernetes-playground-observability/refs/heads/master/monitoring/values/loki-values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

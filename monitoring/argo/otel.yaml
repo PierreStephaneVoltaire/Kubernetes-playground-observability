@@ -15,4 +15,8 @@ spec:
     helm:
       valueFiles:
         - https://raw.githubusercontent.com/PierreStephaneVoltaire/Kubernetes-playground-observability/refs/heads/master/monitoring/values/otel-collector-values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 
