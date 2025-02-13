@@ -11,7 +11,7 @@ spec:
   source:
     chart: otel-collector
     repoURL:  https://open-telemetry.github.io/opentelemetry-helm-charts
-    targetRevision: latest
+    targetRevision: 0.116.0
     helm:
       valueFiles:
         - https://raw.githubusercontent.com/PierreStephaneVoltaire/Kubernetes-playground-observability/refs/heads/master/monitoring/values/otel-collector-values.yaml
