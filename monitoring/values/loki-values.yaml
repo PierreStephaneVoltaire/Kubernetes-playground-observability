@@ -1,7 +1,21 @@
 loki:
-  storage:
-    type: filesystem
-  persistence:
-    enabled: true
-    storageClass: gp3
-    size: 50Gi
+  config:
+    storage_config:
+      aws:
+        s3: arn:aws:s3:::playground-loki-logs-bucket
+        region: ca-central-1
+      boltdb_shipper:
+        active_index_directory: /loki/index
+      shared_store: s3
+      cache_location: /loki/cache
+serviceAccount:
+  create: false  
+  name: loki-service-account  
+
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "500m"
+  limits:
+    memory: "2Gi"
+    cpu: "1"
