@@ -13,7 +13,7 @@ loki:
   tracing:
     enabled: true
   querier:
-    max_concurrent: 4
+    max_concurrent: 2
   storage_config:
     aws:
       region: ca-central-1 # for example, eu-west-2
@@ -54,37 +54,94 @@ serviceAccount:
 deploymentMode: Distributed
 
 ingester:
-  replicas: 3
+  replicas: 2
   zoneAwareReplication:
     enabled: false
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
 
 querier:
-  replicas: 3
-  maxUnavailable: 2
+  replicas: 1
+  maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
 
 queryFrontend:
-  replicas: 2
+  replicas: 1
   maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 25m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 512Mi
 
 queryScheduler:
-  replicas: 2
+  replicas: 1
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
 
 distributor:
-  replicas: 3
-  maxUnavailable: 2
+  replicas: 2
+  maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
 compactor:
   replicas: 1
   serviceAccount:
     create: false
     name: loki-service-account
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
 
 indexGateway:
-  replicas: 2
+  replicas: 1
   maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
 
 ruler:
   replicas: 1
   maxUnavailable: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
 
 
 # This exposes the Loki gateway so it can be written to and queried externaly
