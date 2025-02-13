@@ -9,7 +9,7 @@ metadata:
   name: monitoring-stack
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1" 
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -24,7 +24,7 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -44,7 +44,15 @@ spec:
   namespaceResourceWhitelist:
     - group: "*"
       kind: "*"
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  syncWindows:
+    - applications:
+        - '*'
+      clusters:
+        - '*'
+      duration: 360s
+      kind: allow
+      manualSync: true
+      namespaces:
+        - '*'
+      schedule: '*/5 * * * *'
+      timeZone: UTC
