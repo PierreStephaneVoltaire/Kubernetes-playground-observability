@@ -1,3 +1,6 @@
+image:
+  repository: openTelemetry/opentelemetry-collector
+  tag: latest
 config:
   receivers:
     otlp:
