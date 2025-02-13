@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: otel-collector
+  name: opentelemetry-collector
   namespace: argocd
 spec:
   destination:
@@ -15,3 +15,4 @@ spec:
     helm:
       valueFiles:
         - https://raw.githubusercontent.com/PierreStephaneVoltaire/Kubernetes-playground-observability/refs/heads/master/monitoring/values/otel-collector-values.yaml
+
