@@ -1,6 +1,8 @@
 image:
   repository: openTelemetry/opentelemetry-collector
   tag: latest
+mode: daemonset
+
 config:
   receivers:
     otlp:
