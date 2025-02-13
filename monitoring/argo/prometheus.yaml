@@ -4,14 +4,18 @@ metadata:
   name: prometheus
   namespace: argocd
 spec:
-  destination:
-    namespace: monitoring
-    server: https://kubernetes.default.svc
   project: monitoring
   source:
-    chart: kube-prometheus-stack
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 69.2.3
     helm:
       valueFiles:
         - ../values/prometheus-values.yaml
+    chart: kube-prometheus-stack
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
