@@ -1,13 +1,12 @@
 loki:
-  config:
-    storage_config:
-      aws:
-        s3: arn:aws:s3:::playground-loki-logs-bucket
-        region: ca-central-1
-      boltdb_shipper:
-        active_index_directory: /loki/index
-      shared_store: s3
-      cache_location: /loki/cache
+  storage:
+    type: "s3"
+    s3:
+      region: ca-central-1
+    bucketNames:
+      chunks: playground-loki-logs-bucket
+      ruler: playground-loki-logs-bucket
+      admin: playground-loki-logs-bucket
 serviceAccount:
   create: false  
   name: loki-service-account  
