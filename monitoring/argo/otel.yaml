@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: otel-collector
+  namespace: argocd
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  project: monitoring
+  source:
+    chart: otel-collector
+    repoURL:  https://open-telemetry.github.io/opentelemetry-helm-charts
+    targetRevision: latest
+    helm:
+      valueFiles:
+        - https://raw.githubusercontent.com/PierreStephaneVoltaire/Kubernetes-playground-observability/refs/heads/master/monitoring/values/otel-collector-values.yaml

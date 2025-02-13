@@ -1,0 +1,7 @@
+loki:
+  storage:
+    type: filesystem
+  persistence:
+    enabled: true
+    storageClass: gp3
+    size: 50Gi

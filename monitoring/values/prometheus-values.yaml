@@ -1,4 +1,9 @@
 prometheus:
+  server:
+    persistentVolume:
+      enabled: true
+      storageClass: gp3
+      size: 50Gi
   prometheusSpec:
     serviceMonitorSelector: {}
     logLevel: debug

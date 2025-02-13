@@ -10,7 +10,7 @@ spec:
     targetRevision: 69.2.3
     helm:
       valueFiles:
-        - monitoring/values/prometheus-values.yaml
+        - https://raw.githubusercontent.com/PierreStephaneVoltaire/Kubernetes-playground-observability/refs/heads/master/monitoring/values/prometheus-values.yaml
     chart: kube-prometheus-stack
   destination:
     server: https://kubernetes.default.svc
