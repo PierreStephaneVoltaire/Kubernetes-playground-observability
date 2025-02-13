@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: monitoring
   source:
-    chart: otel-collector
+    chart: opentelemetry-collector
     repoURL:  https://open-telemetry.github.io/opentelemetry-helm-charts
     targetRevision: 0.116.0
     helm:
