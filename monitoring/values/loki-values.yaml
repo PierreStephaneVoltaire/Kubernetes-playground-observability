@@ -74,6 +74,9 @@ distributor:
   maxUnavailable: 2
 compactor:
   replicas: 1
+  serviceAccount:
+    create: false
+    name: loki-service-account
 
 indexGateway:
   replicas: 2
