@@ -16,15 +16,15 @@ loki:
     max_concurrent: 2
   storage_config:
     aws:
-      region: ca-central-1 # for example, eu-west-2
-      bucketnames: playground-loki-logs-bucket # Your actual S3 bucket name, for example, loki-aws-dev-chunks
+      region: ca-central-1 
+      bucketnames: playground-loki-logs-bucket 
       s3forcepathstyle: false
   pattern_ingester:
     enabled: true
   limits_config:
     allow_structured_metadata: true
     volume_enabled: true
-    retention_period: 672h # 28 days retention
+    retention_period: 672h 
   compactor:
     retention_enabled: true
     delete_request_store: s3
@@ -33,20 +33,18 @@ loki:
     storage:
       type: s3
       s3:
-        region: ca-central-1 # for example, eu-west-2
-        bucketnames: playground-loki-logs-bucket # Your actual S3 bucket name, for example, loki-aws-dev-ruler
+        region: ca-central-1 
+        bucketnames: playground-loki-logs-bucket 
         s3forcepathstyle: false
-      alertmanager_url: http://prom:9093 # The URL of the Alertmanager to send alerts (Prometheus, Mimir, etc.)
+      alertmanager_url: http://prom:9093 
   storage:
     type: s3
     bucketNames:
-      chunks: "playground-loki-logs-bucket" # Your actual S3 bucket name (loki-aws-dev-chunks)
-      ruler: "playground-loki-logs-bucket" # Your actual S3 bucket name (loki-aws-dev-ruler)
-      # admin: "<Insert s3 bucket name>" # Your actual S3 bucket name (loki-aws-dev-admin) - GEL customers only
+      chunks: "playground-loki-logs-bucket" 
+      ruler: "playground-loki-logs-bucket" 
     s3:
-      region: ca-central-1 # eu-west-2
-      #insecure: false
-    # s3forcepathstyle: false
+      region: ca-central-1 
+     
 serviceAccount:
   create: false
   name: loki-service-account
@@ -144,7 +142,6 @@ ruler:
       memory: 512Mi
 
 
-# This exposes the Loki gateway so it can be written to and queried externaly
 gateway:
   service:
     type: LoadBalancer
@@ -152,7 +149,6 @@ gateway:
     enabled: true
     existingSecret: loki-basic-auth
 
-# Since we are using basic auth, we need to pass the username and password to the canary
 lokiCanary:
   extraArgs:
     - -pass=$(LOKI_PASS)
@@ -169,7 +165,6 @@ lokiCanary:
           name: canary-basic-auth
           key: username
 
-# Enable minio for storage
 minio:
   enabled: false
 
