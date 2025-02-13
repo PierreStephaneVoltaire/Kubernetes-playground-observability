@@ -19,4 +19,4 @@ config:
       logs:
         receivers: [otlp]
         processors: [batch]
-        exporters: [loki]
+        exporters: [otlphttp]
