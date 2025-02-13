@@ -1,5 +1,5 @@
 image:
-  repository: openTelemetry/opentelemetry-collector
+  repository: otel/opentelemetry-collector
   tag: latest
 mode: daemonset
 
