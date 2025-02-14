@@ -1,7 +1,0 @@
-fluentbit:
-  backend:
-    type: opentelemetry
-    opentelemetry:
-      host: otel-collector.monitoring.svc.cluster.local
-      port: 4317
-      protocol: grpc

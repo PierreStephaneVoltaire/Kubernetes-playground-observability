@@ -16,4 +16,12 @@ prometheus:
     serviceMonitorSelector: {}
     logLevel: debug
 grafana:
-  enabled: false
+  adminUser: "admin"
+  adminPassword: "grafana-password"
+  persistence:
+    type: pvc
+    enabled: true
+    storageClassName: "gp3"
+  service:
+    type: LoadBalancer
+
