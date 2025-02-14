@@ -2,23 +2,21 @@ image:
   repository: otel/opentelemetry-collector
   tag: latest
 mode: daemonset
-
-receivers:
-  otlp:
-    protocols:
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
-processors:
-  batch: {}
-exporters:
-  otlphttp/logs:
-    endpoint: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
-    tls:
-      insecure: true
-
-    # Pipelines
+config:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+  processors:
+    batch: {}
+  exporters:
+    otlphttp/logs:
+      endpoint: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
+      tls:
+        insecure: true
 service:
   pipelines:
     logs:
