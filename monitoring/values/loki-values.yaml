@@ -51,17 +51,17 @@ loki:
 
 serviceAccount:
   create: false
-  name:
+  name: loki-service-account
 deploymentMode: Distributed
 
 ingester:
-  replicas: 3
+  replicas: 2
   zoneAwareReplication:
     enabled: false
 
 querier:
-  replicas: 3
-  maxUnavailable: 2
+  replicas: 2
+  maxUnavailable: 1
 
 queryFrontend:
   replicas: 2
@@ -71,11 +71,13 @@ queryScheduler:
   replicas: 2
 
 distributor:
-  replicas: 3
-  maxUnavailable: 2
+  replicas: 2
+  maxUnavailable: 1
 compactor:
   replicas: 1
-
+  serviceAccount:
+    create: false
+    name: loki-service-account
 indexGateway:
   replicas: 2
   maxUnavailable: 1
