@@ -24,4 +24,3 @@ grafana:
     storageClassName: "gp3"
   service:
     type: LoadBalancer
-
