@@ -90,26 +90,7 @@ gateway:
   service:
     type: LoadBalancer
   basicAuth:
-    enabled: true
-    existingSecret: loki-basic-auth
-
-# Since we are using basic auth, we need to pass the username and password to the canary
-lokiCanary:
-  extraArgs:
-    - -pass=$(LOKI_PASS)
-    - -user=$(LOKI_USER)
-  extraEnv:
-    - name: LOKI_PASS
-      valueFrom:
-        secretKeyRef:
-          name: canary-basic-auth
-          key: password
-    - name: LOKI_USER
-      valueFrom:
-        secretKeyRef:
-          name: canary-basic-auth
-          key: username
-
+    enabled: false
 # Enable minio for storage
 minio:
   enabled: false
